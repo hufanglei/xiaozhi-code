@@ -1,15 +1,15 @@
-class Dog:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
+import asyncio
+import os
 
-    def info(self):
-        # 方法：显示动物信息（封装）
-        print(f"{self.name} ({self.age}岁)")
+from ai_core.llm.chatglm import ChatGLM_LLM
+from ai_core.tts.edge import Edge_TTS
 
-    def speak(self):
-        print("汪汪！")
+if __name__ == "__main__":
+    llm = ChatGLM_LLM()
+    response = llm.generate_response("你好")
+    print("ChatGLM-4-Flash:", response)
 
-if __name__ == '__main__':
-    dog = Dog('小黄', '2')
-    dog.info()
+    tts = Edge_TTS()
+    output_file = asyncio.run(tts.text_to_speech(response, "test.mp3"))
+    # windows播放
+    os.system(f"start {output_file}")

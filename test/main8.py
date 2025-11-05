@@ -28,6 +28,7 @@ def run():
     llm = LLM(config)
 
     dialogue = [
+        {"role": "system", "content": "调皮一点回答"},
         {"role": "user", "content": "你好"},
     ]
 
